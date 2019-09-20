@@ -1,0 +1,12 @@
+[package]
+name = "github-actions-pyo3"
+version = "0.0.0"
+authors = ["cthwaite"]
+edition = "2018"
+
+[lib]
+name = "_string_sum"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "^0.8", features= ["extension-module"]}
