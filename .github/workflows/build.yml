@@ -25,10 +25,14 @@ jobs:
       - name: Build wheel
         run: |
           python setup.py bdist_wheel
+      - name: Install hub
+        run: |
+          sudo apt-get install hub
       - name: Upload wheel to release
-        uses: svenstaro/upload-release-action@v1-release
-        with:
-          repo_token: ${{ secrets.REPO_TOKEN }}
-          file: dist/sum_as_string-0.0.0-cp37-cp37m-linux_x86_64.whl
-          asset_name: sum_as_string-0.0.0-cp37-cp37m-linux_x86_64.whl
-          tag: ${{ github.ref }}
+        env:
+          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+          TAG_REF: ${{ github.ref }}
+        run: |
+          for wheel in dist/*.whl; do
+            hub release edit $TAG_REF -a $wheel
+          done
