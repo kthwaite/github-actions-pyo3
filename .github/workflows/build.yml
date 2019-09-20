@@ -22,12 +22,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade setuptools-rust
-      - name: Build wheel
-        run: |
-          python setup.py bdist_wheel
       - name: Install hub
         run: |
           sudo snap install hub --classic
+      - name: Build wheel
+        run: |
+          python setup.py bdist_wheel
       - name: Upload wheel to release
         env:
           REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
