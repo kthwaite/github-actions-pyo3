@@ -30,7 +30,7 @@ jobs:
           python setup.py bdist_wheel
       - name: Upload wheel to release
         env:
-          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
           TAG_REF: ${{ github.ref }}
         run: |
           for wheel in dist/*.whl; do
