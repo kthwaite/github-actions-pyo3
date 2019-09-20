@@ -27,7 +27,7 @@ jobs:
           python setup.py bdist_wheel
       - name: Install hub
         run: |
-          snap install hub --classic
+          sudo snap install hub --classic
       - name: Upload wheel to release
         env:
           REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
