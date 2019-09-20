@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools setuptools-rust
+          python -m pip install --upgrade pip setuptools wheel setuptools-rust
       - name: Build wheel
         run: |
           python setup.py bdist_wheel
