@@ -22,17 +22,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade setuptools-rust
-      - name: Install hub
-        run: |
-          sudo snap install hub --classic
+          python -m pip install pygithub
       - name: Build wheel
         run: |
           python setup.py bdist_wheel
       - name: Upload wheel to release
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-          TAG_REF: ${{ github.ref }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for wheel in dist/*.whl; do
-            hub release edit $TAG_REF -a $wheel
-          done
+          python upload_artifact.py
