@@ -24,6 +24,10 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade setuptools-rust
           python -m pip install pygithub
+      - uses: hecrj/setup-rust-action@v1
+        name: Install rust
+        with:
+          rust-version: nightly
       - name: Build wheel
         run: |
           python setup.py bdist_wheel
